@@ -233,7 +233,7 @@ If you'd like to assert, and manipulate your rendered components you can use
 [TestUtils](http://facebook.github.io/react/docs/test-utils.html). We use Enzyme
 for this example.
 
-You have to run `yarn add --dev enzyme` to use Enzyme. If you are using a React
+You have to run `yarn add --dev enzyme enzyme-adapter-react-16` to use Enzyme. If you are using a React
 version below 15.5.0, you will also need to install `react-addons-test-utils`.
 
 Let's implement a simple checkbox which swaps between two labels:
@@ -280,8 +280,11 @@ example.
 // __tests__/CheckboxWithLabel-test.js
 
 import React from 'react';
-import {shallow} from 'enzyme';
+import Enzyme, {shallow} from 'enzyme';
+import Adapter  from 'enzyme-adapter-react-16';
 import CheckboxWithLabel from '../CheckboxWithLabel';
+
+Enzyme.configure({ adapter: new Adapter() })
 
 test('CheckboxWithLabel changes the text after click', () => {
   // Render a checkbox with label in the document
